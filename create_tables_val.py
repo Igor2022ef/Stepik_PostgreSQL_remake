@@ -14,12 +14,12 @@ def create_table(session):
 
     b1 = Book(title='Мастер и Маргарита', price=670.99, amount=3, author=a1, genre=g1)
     b2 = Book(title='Белая гвардия', price=540.50, amount=5, author=a1, genre=g1)
-    b3 = Book(title='Идиот', price=460.00, amount=10, author=a1, genre=g1)
-    b4 = Book(title='Братья Карамазовы', price=799.01, amount=2, author=a1, genre=g1)
-    b5 = Book(title='Игрок', price=480.50, amount=10, author=a1, genre=g1)
-    b6 = Book(title='Стихотворения и поэмы', price=650.00, amount=15, author=a1, genre=g1)
-    b7 = Book(title='Черный человек', price=570.20, amount=6, author=a1, genre=g1)
-    b8 = Book(title='Лирика', price=518.99, amount=2, author=a1, genre=g1)
+    b3 = Book(title='Идиот', price=460.00, amount=10, author=a2, genre=g1)
+    b4 = Book(title='Братья Карамазовы', price=799.01, amount=2, author=a2, genre=g1)
+    b5 = Book(title='Игрок', price=480.50, amount=10, author=a2, genre=g1)
+    b6 = Book(title='Стихотворения и поэмы', price=650.00, amount=15, author=a3, genre=g2)
+    b7 = Book(title='Черный человек', price=570.20, amount=6, author=a3, genre=g2)
+    b8 = Book(title='Лирика', price=518.99, amount=2, author=a4, genre=g2)
 
     c1 = City(name_city='Москва',days_delivery=5)
     c2 = City(name_city='Санкт-Петербург', days_delivery=3)

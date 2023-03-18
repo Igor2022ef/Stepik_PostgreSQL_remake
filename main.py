@@ -18,9 +18,9 @@ def make_methods():
     session = Session()
     # methods_take_inform(session)
     # group_methods_take_inform(session)
-    wow_join_weth(session)
+    # wow_join_weth(session)
     # other_common_methods(session)
-    # methods_calculate_inform(session)
+    methods_calculate_inform(session)
 
 def clear_base():
     Base.metadata.drop_all(engine)

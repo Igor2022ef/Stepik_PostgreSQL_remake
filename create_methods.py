@@ -90,9 +90,49 @@ def group_methods_take_inform(session):
 
 def wow_join_weth(session):
 #Метод join() используется для создания SQL INNER JOIN.
-# Он принимает название таблицы, с которой нужно выполнить SQL JOIN.
+# Он принимает название таблицы, с которой нужно выполнить SQL JOIN
+# ПО УМОЛЧАНИЮ, стягивает по id.
+    wow_inner_join = session.query(Book.title, Author.name_author).join(Author).filter(Book.amount>5).all()
+    print(f"Все названия и авторы из Book где amount>5:")
+    for i in wow_inner_join:
+        print(i)
+        continue
+    wow_inner_join_1 = session.query(Book.title, Author.name_author).join(Author).filter(Book.amount > 5)
+    # for j in wow_inner_join_1:
+    print(f"Сырой запрос - Все названия и авторы из Book где amount>5: {wow_inner_join_1}")
+    '''
+                                                            ВОПРОС: Почему, если выводитить через for, метод all() не нужен и вместо сырого
+                                                            запроса выводится результат работы кода с методом all()????
+                                                            код ниже
+    '''
+    wow_inner_join_2 = session.query(Book.title, Author.name_author).join(Author).filter(Book.amount > 5)
+    for j in wow_inner_join_2:
+        print(j)
 
-
+#Метод outerjoin() работает как join(), но создает LEFT OUTER JOIN.
+    wow_inner_join_3 = session.query(Book.id, Genre.name_genre).outerjoin(Book).filter(Book.id == None).all()
+    print("Метод outerjoin() работает как join(), но создает LEFT OUTER JOIN")
+    print("Все жанры, которые не представлены в книгах на складе.")
+    for i in wow_inner_join_3:
+        print(i)
+        continue
+    print(100 * '-')
+    wow_inner_join_3w = session.query(Book.id, Genre.name_genre).outerjoin(Book).filter(Book.id == None)
+    print("Сырой запрос: Все жанры, которые не представлены в книгах на складе.")
+    print(wow_inner_join_3w)
+#Создать FULL OUTER JOIN можно, передав в метод full=True.
+#FULL OUTER JOIN (или просто OUTER JOIN) используется, чтобы вернуть
+# все записи, имеющие значения в левой или правой таблице.
+    wow_inner_join_4 = session.query(Book.id, Genre.name_genre).outerjoin(Genre, full=True).all()
+    print("Метод outerjoin() работает как join(), но создает LEFT OUTER JOIN")
+    print("Все жанры, которые представлены в книгах на складе.")
+    for i in wow_inner_join_4:
+        print(i)
+        continue
+    print(100 * '-')
+    wow_inner_join_4w = session.query(Book.id, Genre.name_genre).outerjoin(Genre, full=True)
+    print("Сырой запрос: Все жанры, которые представлены в книгах на складе.")
+    print(wow_inner_join_4w)
 
 def other_common_methods(session):
 #Метод limit() добавляет оператор LIMIT к запросу. Он принимает количество записей, которые нужно вернуть.
@@ -105,11 +145,6 @@ def other_common_methods(session):
 # Часто используется с оператором limit().
     offset_limit = session.query(Book).limit(2).offset(2).all()
     print(f"Первые две строки из Book со смещением на 2 стр.: {offset_limit}")
-
-
-
-
-
 
 def methods_calculate_inform(session):
 #Создание вычисляемого столбца
